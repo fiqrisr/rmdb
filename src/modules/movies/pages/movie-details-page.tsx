@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { Skeleton, Image } from "@nextui-org/react";
+import { Skeleton } from "@heroui/react";
 import dayjs from "dayjs";
 import { atom, useAtom, useAtomValue } from "jotai";
 
@@ -121,21 +121,20 @@ export const MovieDetailsPage = () => {
         >
           <div className="flex flex-col md:flex-row gap-8">
             <div className="grow-0 shrink-0 self-center">
-              <Skeleton
-                className="rounded-2xl h-[384px] !bg-transparent"
-                isLoaded={!isLoading}
-              >
-                <Image
-                  className="w-64 shadow-2xl"
+              {isLoading ? (
+                <Skeleton className="rounded-2xl h-[384px] bg-transparent" />
+              ) : (
+                <img
+                  className="w-64 shadow-2xl rounded-2xl"
                   src={moviePosterUrl}
                   alt={`${data?.original_title} poster`}
                 />
-              </Skeleton>
+              )}
             </div>
 
             <div ref={movieDetailContainer} className="py-4 !text-white w-full">
               {isLoading ? (
-                <Skeleton className="!bg-transparent rounded-xl w-2/5 h-9" />
+                <Skeleton className="bg-transparent rounded-xl w-2/5 h-9" />
               ) : (
                 <div className="flex gap-x-3 items-center">
                   <h1 className="text-3xl font-bold mb-1">
@@ -171,9 +170,9 @@ export const MovieDetailsPage = () => {
 
               {isLoading ? (
                 <div className="flex flex-col gap-y-2">
-                  <Skeleton className="!bg-transparent rounded-xl w-full h-4" />
-                  <Skeleton className="!bg-transparent rounded-xl w-full h-4" />
-                  <Skeleton className="!bg-transparent rounded-xl w-4/5 h-4" />
+                  <Skeleton className="bg-transparent rounded-xl w-full h-4" />
+                  <Skeleton className="bg-transparent rounded-xl w-full h-4" />
+                  <Skeleton className="bg-transparent rounded-xl w-4/5 h-4" />
                 </div>
               ) : (
                 <>

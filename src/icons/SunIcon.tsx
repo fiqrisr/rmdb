@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export const SunIcon = (props: JSX.IntrinsicElements["svg"]) => (
   <svg
     aria-hidden="true"

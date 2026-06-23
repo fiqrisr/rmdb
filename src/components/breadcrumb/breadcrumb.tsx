@@ -1,5 +1,4 @@
 import NextLink from "next/link";
-import { Link } from "@nextui-org/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 type BreadcrumbProps = {
@@ -23,14 +22,13 @@ export const Breadcrumb = ({ items }: BreadcrumbProps) => {
         if (item.isLink && item.href) {
           return (
             <>
-              <Link
+              <NextLink
                 key={item.key}
                 href={item.href}
-                className="text-xl font-medium mr-2"
-                as={NextLink}
+                className="text-xl font-medium mr-2 text-accent hover:underline"
               >
                 {item.label}
-              </Link>
+              </NextLink>
               {bullet}
             </>
           );

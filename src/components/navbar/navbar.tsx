@@ -1,12 +1,7 @@
 import { FormEvent } from "react";
 import Link from "next/link";
 import { atom, useAtom } from "jotai";
-import {
-  Input,
-  Navbar as NextUINavbar,
-  NavbarBrand,
-  NavbarContent
-} from "@nextui-org/react";
+import { Input, InputGroup } from "@heroui/react";
 
 import { ThemeSwitcher } from "@/components";
 import { AppLogo } from "@/icons/app-logo";
@@ -30,35 +25,33 @@ export const Navbar = () => {
   };
 
   return (
-    <NextUINavbar shouldHideOnScroll isBordered>
-      <NavbarBrand className="gap-3">
-        <Link href="/" className="flex gap-4 items-center justify-center">
+    <nav className="sticky top-0 z-50 w-full border-b border-default bg-surface/80 backdrop-blur">
+      <div className="container mx-auto max-w-5xl px-6 h-16 flex items-center justify-between gap-3">
+        <Link
+          href="/"
+          className="flex gap-4 items-center justify-center shrink-0"
+        >
           <AppLogo className="h-10 w-fit" />
           <p className="font-bold text-inherit text-xl">RMDB</p>
         </Link>
-      </NavbarBrand>
-      <NavbarContent justify="center">
-        <form onSubmit={handleSearch}>
-          <Input
-            classNames={{
-              base: "max-w-full sm:max-w-[16rem] h-10",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20"
-            }}
-            placeholder="Search movies"
-            size="sm"
-            startContent={<SearchIcon size={18} />}
-            type="search"
-            value={search}
-            onValueChange={setSearch}
-          />
+        <form onSubmit={handleSearch} className="flex-1 flex justify-center">
+          <InputGroup className="max-w-full sm:max-w-[16rem] h-full font-normal text-muted bg-default/20 dark:bg-default/20 rounded-lg">
+            <InputGroup.Prefix>
+              <SearchIcon size={18} />
+            </InputGroup.Prefix>
+            <Input
+              className="text-sm h-full"
+              placeholder="Search movies"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </InputGroup>
         </form>
-      </NavbarContent>
-      <NavbarContent justify="end">
-        <ThemeSwitcher />
-      </NavbarContent>
-    </NextUINavbar>
+        <div className="flex items-center justify-end">
+          <ThemeSwitcher />
+        </div>
+      </div>
+    </nav>
   );
 };

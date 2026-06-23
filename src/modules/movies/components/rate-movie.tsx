@@ -1,9 +1,4 @@
-import {
-  Popover,
-  PopoverTrigger,
-  Button,
-  PopoverContent
-} from "@nextui-org/react";
+import { Popover, Button } from "@heroui/react";
 import { Rating } from "react-simple-star-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useAtom } from "jotai";
@@ -42,21 +37,23 @@ export const RateMovie = ({ movieId, rating }: RateMovieProps) => {
   };
 
   return (
-    <Popover placement="bottom">
-      <PopoverTrigger>
-        <Button isIconOnly size="sm" title="Rate movie">
+    <Popover>
+      <Popover.Trigger>
+        <Button isIconOnly size="sm" aria-label="Rate movie">
           {rating ? <AiFillStar size={18} /> : <AiOutlineStar size={18} />}
         </Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <Rating
-          emptyStyle={{ display: "flex" }}
-          SVGstyle={{ display: "inline-block" }}
-          initialValue={rating ?? 0}
-          allowFraction
-          onClick={handleRating}
-        />
-      </PopoverContent>
+      </Popover.Trigger>
+      <Popover.Content placement="bottom">
+        <Popover.Dialog>
+          <Rating
+            emptyStyle={{ display: "flex" }}
+            SVGstyle={{ display: "inline-block" }}
+            initialValue={rating ?? 0}
+            allowFraction
+            onClick={handleRating}
+          />
+        </Popover.Dialog>
+      </Popover.Content>
     </Popover>
   );
 };

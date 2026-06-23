@@ -1,4 +1,4 @@
-import { Switch } from "@nextui-org/react";
+import { Switch } from "@heroui/react";
 import { useTheme } from "next-themes";
 
 import { SunIcon } from "@/icons/SunIcon";
@@ -10,16 +10,21 @@ export const ThemeSwitcher = () => {
   return (
     <Switch
       size="lg"
-      color="secondary"
       isSelected={theme === "dark"}
-      onValueChange={() => setTheme(theme === "dark" ? "light" : "dark")}
-      thumbIcon={({ isSelected, className }) =>
-        isSelected ? (
-          <MoonIcon className={className} />
-        ) : (
-          <SunIcon className={className} />
-        )
-      }
-    />
+      onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+      aria-label="Toggle theme"
+    >
+      <Switch.Control className="data-[selected=true]:bg-accent">
+        <Switch.Thumb>
+          <Switch.Icon>
+            {theme === "dark" ? (
+              <MoonIcon className="h-4 w-4" />
+            ) : (
+              <SunIcon className="h-4 w-4" />
+            )}
+          </Switch.Icon>
+        </Switch.Thumb>
+      </Switch.Control>
+    </Switch>
   );
 };

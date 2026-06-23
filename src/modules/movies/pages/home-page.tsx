@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Spinner } from "@nextui-org/react";
+import { Button, Spinner } from "@heroui/react";
 
 import { MainLayout } from "@/layouts";
 import { MovieListItem, SortBy } from "@/types";
@@ -66,7 +66,7 @@ export const HomePage = () => {
 
       {isLoading && (
         <div className="flex justify-center items-center my-16">
-          <Spinner size="lg" color="secondary" />
+          <Spinner size="lg" color="current" />
         </div>
       )}
 
@@ -79,10 +79,15 @@ export const HomePage = () => {
       {hasNextPage && (
         <div className="flex justify-center mt-8">
           <Button
-            isLoading={isFetchingNextPage}
-            onClick={() => fetchNextPage()}
+            isPending={isFetchingNextPage}
+            onPress={() => fetchNextPage()}
           >
-            Load more
+            {({ isPending }) => (
+              <>
+                {isPending && <Spinner color="current" size="sm" />}
+                Load more
+              </>
+            )}
           </Button>
         </div>
       )}

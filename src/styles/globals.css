@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@heroui/styles";
+
+@source "../**/*.{js,ts,jsx,tsx}";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 .swiper {
   overflow: hidden;
@@ -15,4 +18,3 @@
   position: relative;
   border-radius: 20px;
 }
-

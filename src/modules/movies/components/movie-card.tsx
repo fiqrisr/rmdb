@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardFooter, Chip, Image } from "@nextui-org/react";
+import { Card, Chip } from "@heroui/react";
 import { FaStar } from "react-icons/fa";
 import dayjs from "dayjs";
 import { useAtomValue } from "jotai/index";
@@ -26,10 +26,7 @@ export const MovieCard = ({
 
   return (
     <div>
-      <Card
-        isFooterBlurred
-        className="relative w-full h-64 mb-3 hover:-translate-y-2 hover:shadow-2xl hover:shadow-violet-500/50 transition-all"
-      >
+      <Card className="relative w-full h-64 mb-3 overflow-hidden rounded-xl hover:-translate-y-2 hover:shadow-2xl hover:shadow-violet-500/50 transition-all">
         {movieRating && (
           <div className="absolute w-full text-white top-0 z-40 px-4 py-2">
             <div className="rounded-xl bg-black/70 backdrop-blur text-center py-1">
@@ -37,8 +34,7 @@ export const MovieCard = ({
             </div>
           </div>
         )}
-        <Image
-          removeWrapper
+        <img
           src={
             posterPath
               ? `${BASE_TMDB_IMAGE_URL}/${MOVIE_POSTER_SIZE}/${posterPath}`
@@ -48,13 +44,13 @@ export const MovieCard = ({
           className="w-full h-full object-cover"
           loading="lazy"
         />
-        <CardFooter className="absolute bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+        <Card.Footer className="absolute bottom-0 z-10 border-t border-white/20 backdrop-blur bg-black/20">
           <div className="w-full flex justify-between">
-            <Chip
-              color="secondary"
-              startContent={<FaStar size={16} className="mx-1" />}
-            >
-              <span className="font-medium">{vote}</span>
+            <Chip variant="secondary">
+              <FaStar size={16} className="mx-1" />
+              <Chip.Label>
+                <span className="font-medium">{vote}</span>
+              </Chip.Label>
             </Chip>
             <p className="font-medium text-white">
               {releaseDate
@@ -62,7 +58,7 @@ export const MovieCard = ({
                 : "Unknown date"}
             </p>
           </div>
-        </CardFooter>
+        </Card.Footer>
       </Card>
       <p className="font-medium text-lg text-black dark:text-white">{name}</p>
     </div>

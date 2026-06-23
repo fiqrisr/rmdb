@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { useTheme } from "next-themes";
 
 export const AppLogo = (props: JSX.IntrinsicElements["svg"]) => {

@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 
 import { BASE_TMDB_IMAGE_URL, MOVIE_BACKDROP_SIZE } from "@/configs";
-import { Spinner } from "@nextui-org/react";
+import { Spinner } from "@heroui/react";
 
 export type HeroCarouselProps = {
   isLoading?: boolean;
@@ -22,7 +22,7 @@ export const HeroCarousel = ({ isLoading, slideList }: HeroCarouselProps) => {
     <>
       {isLoading && (
         <div className="flex justify-center items-center min-h-[200px] md:min-h-[300px] lg:min-h-[430px]">
-          <Spinner size="lg" color="secondary" />
+          <Spinner size="lg" color="current" />
         </div>
       )}
       <Swiper

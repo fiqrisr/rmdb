@@ -1,4 +1,5 @@
-import { Select, SelectItem } from "@nextui-org/react";
+import { Select, Label, ListBox } from "@heroui/react";
+
 import { SortBy } from "@/types";
 
 const sortData: { value: SortBy; label: string }[] = [
@@ -23,18 +24,29 @@ export const MovieSortSelect = ({
 }: MovieSortSelectProps) => {
   return (
     <Select
-      label="Sort By"
       className="max-w-[170px]"
-      selectedKeys={[selectedSort]}
-      onChange={(e) => {
-        setSelectedSort(e.target.value as SortBy);
-      }}
+      value={selectedSort}
+      onChange={(value) => setSelectedSort(value as SortBy)}
     >
-      {sortData.map((sort) => (
-        <SelectItem key={sort.value} value={sort.value}>
-          {sort.label}
-        </SelectItem>
-      ))}
+      <Label>Sort By</Label>
+      <Select.Trigger>
+        <Select.Value />
+        <Select.Indicator />
+      </Select.Trigger>
+      <Select.Popover>
+        <ListBox>
+          {sortData.map((sort) => (
+            <ListBox.Item
+              id={sort.value}
+              key={sort.value}
+              textValue={sort.label}
+            >
+              {sort.label}
+              <ListBox.ItemIndicator />
+            </ListBox.Item>
+          ))}
+        </ListBox>
+      </Select.Popover>
     </Select>
   );
 };

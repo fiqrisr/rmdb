@@ -1,10 +1,12 @@
+import { JSX } from "react";
+
 export const SearchIcon = ({
   size = 24,
   strokeWidth = 1.5,
   width,
   height,
   ...props
-}: JSX.IntrinsicElements["svg"] & { size: number }) => (
+}: JSX.IntrinsicElements["svg"] & { size?: number }) => (
   <svg
     aria-hidden="true"
     fill="none"
